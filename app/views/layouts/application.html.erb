@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   
+    <%= link_to 'Author', authors_path %>
+    <%= link_to 'book', books_path %>
+    
+<div class="col-md-10 col-md-offset-1">
+    
+    <%= yield %>
+  </body>
+</html>

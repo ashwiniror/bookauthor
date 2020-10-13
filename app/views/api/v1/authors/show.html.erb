@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @author.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @author.last_name %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @author.dob %>
+</p>
+<p>Books Written By Author
+	<ul>
+		<% @author.books.each do |book| %>
+			<li> <%= book.book_title %>
+		<% end %>
+	</ul>
+
+</p>
+<%= link_to 'Edit', edit_api_v1_author_path(@author) %> |
+<%= link_to 'Back', api_v1_authors_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book title:</strong>
+  <%= @book.book_title %>
+</p>
+
+<p>
+  <strong>Authors title:</strong>
+  <%= @book.authors.pluck(:first_name, :last_name).join(' ') %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
