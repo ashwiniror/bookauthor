@@ -5,28 +5,15 @@ class AuthorsController < ApplicationController
   # GET /authors.json
   def index
     @authors = Author.all
-    render json: {
-      messages: "author index successfully",
-      is_success: true,
-      data:{
-        authors: @authors
-      }
-    },status: :ok
   end
 
   # GET /authors/1
   # GET /authors/1.json
   def show
-    render json: {
-      messages: "author info",
-      is_success: true,
-      data:{
-        author: @author
-      }
-    },status: :ok
-  
-  end
     
+    
+  end
+  
   # GET /authors/new
   def new
     @author = Author.new
