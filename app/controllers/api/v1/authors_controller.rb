@@ -22,7 +22,7 @@ class Api::V1::AuthorsController < ApplicationController
       messages: "author info",
       is_success: true,
       data:{
-        author: @author
+        author: @author, book: @author.books
       }
     },status: :ok
   
@@ -68,14 +68,28 @@ class Api::V1::AuthorsController < ApplicationController
 
   # DELETE /authors/1
   # DELETE /authors/1.json
+
   def destroy
-  	
-    @author.destroy
-    respond_to do |format|
-      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+      if @author.destroy
+        render json: {
+              messages: "Author was successfully destroyed.",
+              is_success: true,
+              data:{
+              }
+            },status: :ok
+      else
+        render json: {
+              messages: "Deleted author fail",
+              is_success: false,
+              data:{
+              }
+            },status: :unproccessable_entity
+       
+      end
+    
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -88,3 +102,11 @@ class Api::V1::AuthorsController < ApplicationController
       params.require(:author).permit(:first_name, :last_name, :dob)
     end
 end
+def destroy
+    
+    @author.destroy
+    respond_to do |format|
+      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end

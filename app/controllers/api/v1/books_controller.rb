@@ -5,11 +5,25 @@ class Api::V1::BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    render json: {
+      messages: "Books index successfully",
+      is_success: true,
+      data:{
+        books: @books
+      }
+    },status: :ok
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+    render json: {
+      messages: "Book info",
+      is_success: true,
+      data:{
+        book: @book, author: @book.authors
+      }
+    },status: :ok
   end
 
   # GET /books/new
