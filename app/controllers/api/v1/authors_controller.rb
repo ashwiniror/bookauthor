@@ -4,7 +4,15 @@ class Api::V1::AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
+    #json_response "Inndex reviews successfully", true, {authors: @authors}, :ok
     @authors = Author.all
+    render json: {
+      messages: "author index successfully",
+      is_success: true,
+      data:{
+        authors: @authors
+      }
+    },status: :ok
   end
 
   # GET /authors/1
@@ -32,15 +40,14 @@ class Api::V1::AuthorsController < ApplicationController
 
   # POST /authors
   # POST /authors.json
+
   def create
     @author = Author.new(author_params)
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
-        format.json { render :show, status: :created, location: @author }
+       json_response "Created author successfully", true, {author: @author}, :ok
       else
-        format.html { render :new }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        json_response "Created author fail", false, {}, :unproccessable_entity
       end
     end
   end
